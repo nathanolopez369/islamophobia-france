@@ -1,0 +1,1466 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamophobia in France — A Research Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2d42;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --red: #b5382a;
+    --cream: #f5f0e8;
+    --cream-mid: #ede6d6;
+    --text-dark: #1a1a1a;
+    --text-mid: #3d3d3d;
+    --text-light: #6b6b6b;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 58px;
+    border-bottom: 2px solid var(--gold);
+  }
+  nav .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0;
+  }
+  nav ul li a {
+    display: block;
+    padding: 0 14px;
+    height: 58px;
+    line-height: 58px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  nav ul li a:hover { color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  /* HERO */
+  #home {
+    background: var(--navy);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 8rem 4rem 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 440px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .hero-meta-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+  }
+  .hero-meta-item span {
+    color: rgba(255,255,255,0.75);
+    margin-left: 8px;
+  }
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+  }
+  .flag-graphic {
+    width: 320px;
+    height: 200px;
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0.15;
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .flag-blue { flex: 1; background: #002395; }
+  .flag-white { flex: 1; background: #ffffff; }
+  .flag-red { flex: 1; background: #ED2939; }
+
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 380px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .stat-card.accent { border-color: var(--gold); background: rgba(201,168,76,0.07); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-card.accent .stat-num { color: var(--gold-light); }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  /* SECTION COMMON */
+  section {
+    padding: 6rem 0;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  /* COUNTRY PROFILE */
+  #profile {
+    background: var(--white);
+  }
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .profile-body p {
+    margin-bottom: 1.2rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+  }
+  .profile-body p:first-child{
+    font-size: inherit;
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+  .info-panel {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .info-panel-header {
+    background: var(--navy);
+    padding: 1rem 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.85rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-key {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .info-val {
+    font-weight: 400;
+    color: var(--text-dark);
+    text-align: right;
+    max-width: 55%;
+    font-size: 0.92rem;
+  }
+  .info-val.highlight { color: var(--red); font-weight: 600; }
+
+  /* TIMELINE */
+  .timeline {
+    margin-top: 3rem;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 89px;
+    top: 28px;
+    bottom: -2.5rem;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item:last-child::before { display: none; }
+  .timeline-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    padding-top: 4px;
+    text-align: right;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 82px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--cream);
+  }
+  .timeline-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .timeline-content p {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* RESEARCH */
+  #research {
+    background: var(--cream);
+  }
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .research-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    border-top: 3px solid var(--navy);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .research-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .research-card.red { border-top-color: var(--red); }
+  .research-card.gold { border-top-color: var(--gold); }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 1.2rem;
+  }
+  .research-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .research-card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+  .research-card .cite {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+    width: 100%;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    background: var(--navy);
+    padding: 4rem 5rem;
+    margin: 4rem 0;
+    position: relative;
+    border-radius: 4px;
+  }
+  .pull-quote::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.25;
+    position: absolute;
+    top: -1.5rem;
+    left: 3rem;
+    line-height: 1;
+  }
+  .pull-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .pull-quote cite {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* POLITICAL */
+  #political {
+    background: var(--white);
+  }
+  .politician-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .politician-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .politician-header {
+    background: var(--navy-mid);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .politician-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .politician-party {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    background: var(--red);
+    color: var(--white);
+  }
+  .politician-party.bn { background: #1a1a1a; }
+  .politician-body {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+  .politician-body .quote {
+    font-style: italic;
+    color: var(--text-dark);
+    border-left: 3px solid var(--red);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 3px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+  }
+
+  /* MEDIA */
+  #media {
+    background: var(--cream);
+  }
+  .media-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .media-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .media-thumb {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  .media-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .media-info { padding: 1.25rem; }
+  .media-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .media-info p {
+    font-size: 0.86rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .media-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .badge-film { background: #1a1a4e; color: #a0a8d0; }
+  .badge-news { background: #4e1a1a; color: #d0a0a0; }
+  .badge-social { background: #1a3a1a; color: #90c090; }
+
+  /* LEGAL */
+  #legal {
+    background: var(--white);
+  }
+  .law-table-wrap {
+    overflow-x: auto;
+    margin-top: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  table.law-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  .law-table th {
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .law-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+    vertical-align: top;
+    line-height: 1.65;
+  }
+  .law-table tr:last-child td { border-bottom: none; }
+  .law-table tr:nth-child(even) td { background: var(--cream); }
+  .law-table td:first-child { font-weight: 500; color: var(--text-dark); white-space: nowrap; }
+  .status-concern {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 2px;
+    background: #fce8e8;
+    color: #8b1a1a;
+    border: 1px solid #f5c0c0;
+  }
+  .status-context {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 2px;
+    background: #e8f0fc;
+    color: #1a3a8b;
+    border: 1px solid #c0d0f5;
+  }
+
+  /* ECONOMIC */
+  #economic {
+    background: var(--cream);
+  }
+  .econ-blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .econ-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .econ-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--gold);
+  }
+  .econ-block ul {
+    list-style: none;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+  .econ-block ul li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .econ-block ul li:last-child { border-bottom: none; }
+  .econ-block ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* SURVEILLANCE */
+  #surveillance {
+    background: var(--navy);
+    color: var(--white);
+  }
+  #surveillance .section-title { color: var(--white); }
+  #surveillance .section-intro { color: rgba(255,255,255,0.65); }
+  .surv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .surv-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .surv-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+  .surv-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+  }
+  .surv-stat {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  /* ORGANIZATIONS */
+  #organizations {
+    background: var(--white);
+  }
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .org-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .org-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--gold);
+  }
+  .org-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+  }
+  .org-card .org-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .org-card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+  .method-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 0.75rem;
+  }
+  .method-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+  }
+
+  /* SUCCESS */
+  #success {
+    background: var(--cream);
+  }
+  .success-list {
+    margin-top: 2rem;
+  }
+  .success-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .success-item:last-child { border-bottom: none; }
+  .success-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    text-align: center;
+  }
+  .success-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .success-content p {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+  .success-content .outcome {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1a5c1a;
+    background: #e8f5e8;
+    border: 1px solid #b0d8b0;
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.55);
+    padding: 3rem;
+    border-top: 2px solid var(--gold);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-section h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-section p, .footer-section li {
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+  .footer-section ul { list-style: none; }
+  .footer-section ul li {
+    font-size: 0.82rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer a {
+     color: var(--gold);
+  text-decoration: none;
+}
+
+footer a:visited {
+  color: var(--gold);
+}
+
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+  /* UTILITY */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.5rem 0 2.5rem;
+  }
+  .note {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text-light);
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+    margin-top: 2rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 900px) {
+    #home { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .profile-grid, .media-two-col, .politician-grid,
+    .surv-grid, .org-grid { grid-template-columns: 1fr; }
+    .research-grid, .econ-blocks { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .hero-title { font-size: 2.8rem; }
+    .pull-quote { padding: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Islamophobia in France — Research Project</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#political">Political</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#legal">Legal</a></li>
+    <li><a href="#economic">Economic</a></li>
+    <li><a href="#surveillance">Surveillance</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+<!-- HERO / LANDING PAGE -->
+<section id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Research Project · Islamophobia Studies</p>
+    <h1 class="hero-title">Islam &amp;<br><em>La République</em></h1>
+    <p class="hero-subtitle">This project argues that Islamophobia in France operates not merely as social prejudice, but as a structural system reinforced through laïcité and state security policies. As discussed in course frameworks, Islamophobia functions across law, politics, media, and the economy, shaping how Muslim communities are positioned within society.</aside></p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Country: <span>France (République Française)</span></div>
+      <div class="hero-meta-item">Focus: <span>Legal · Political · Economic · Cultural</span></div>
+      <div class="hero-meta-item">Sources: <span>Pew Research Center, Human Rights Watch, Amnesty International, Council of Europe, Institut Montaigne</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="flag-graphic">
+      <div class="flag-blue"></div>
+      <div class="flag-white"></div>
+      <div class="flag-red"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card accent">
+        <div class="stat-num">5–6M</div>
+        <div class="stat-label">Muslims in France (est.)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">8–9%</div>
+        <div class="stat-label">of total population</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2nd</div>
+        <div class="stat-label">Largest Muslim pop. in W. Europe</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-num">1905</div>
+        <div class="stat-label">Law on separation of church &amp; state</div>
+      </div>
+    </div>
+    <p class="source-note">
+        <sup>1</sup> Data from Pew Research Center and Institut Montaigne
+    </p>
+  </div>
+</section>
+
+<!-- COUNTRY PROFILE -->
+<section id="profile">
+  <div class="container">
+    <p class="section-label">Section 01</p>
+    <h2 class="section-title">Country Profile</h2>
+    <div class="profile-grid">
+      <div class="profile-body">
+        <p>France is a country in West Europe with a population of approximately 68 million people and it is home to the largest Muslim population in all of Western Europe. According to research from organizations such as the Pew Research Center and Institut Montaigne, there is an estimated 5 to 6 million Muslims that live in France. This statistic represents around 8-9% of the French population. Most French Muslims immigrate from former countries like Algeria, Morocco, and Tunisia.</p>
+        <p>An important feature to French society is laïcité, which is a model of securlarism established by the 1905 law that separated church and state. This law was meant to ensure religious neutrality in public institutions, however there are reports from Amnesty International and the Council of Europe that argue it to disproportionately affecting muslim communities in modern day.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1905</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Law of Separation of Church and State</h4>
+              <p>France's 1905 seperation of church state set the foundations for<em>laïcité</em>, the French model of secularism. This is important because it later created debates over Muslim religious expression especially in regards to their clothing and public institutions.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1962</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Algerian Independence &amp; Mass Migration</h4>
+              <p>After Algeria gained its Independence, migration from North Africa became the main cause for the Growth of Muslim communities in France. Institut Montaigne mentions Muslims in France often having family origins connected to countries like Algeria, Morocco, and Tunisia to name a few.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2004</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Law Banning Religious Symbols in Schools</h4>
+              <p>France bans "conspicuous" religious symbols in public schools in 2004. Amnesty Intenrationl argues that this type of ban is aimed mostly Muslim people especially those wearing hijabs.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2010</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Full-Face Veil Ban</h4>
+              <p>France became one of the first countries to full face coverings such as those by the niqab in public spaces. Amnesty International has opposed similar full-face veil bans, arguing that they violate freedom of religion and expression.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>State of Emergency After Paris Attacks</h4>
+              <p>After the 2015 Paris attacks, France grew their emergency security personnel, however Human Rights Watch reported that these measures led to discriminartoy raids and house arrests against Muslims.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Law Against "Separatism"</h4>
+              <p>The Law Reinforcing Republican Principles, widely dubbed the "anti-separatism law," introduces sweeping measures critics say target Muslim associations, schools, and civil society organizations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-panel">
+          <div class="info-panel-header">Quick Facts — France</div>
+          <div class="info-row"><span class="info-key">Capital</span><span class="info-val">Paris</span></div>
+          <div class="info-row"><span class="info-key">Population</span><span class="info-val">~68 million (2024)</span></div>
+          <div class="info-row"><span class="info-key">Government</span><span class="info-val">Semi-presidential republic</span></div>
+          <div class="info-row"><span class="info-key">Muslim Pop. (est.)</span><span class="info-val">5–6 million</span></div>
+          <div class="info-row"><span class="info-key">Muslim % Pop.</span><span class="info-val">8–9%</span></div>
+          <div class="info-row"><span class="info-key">Majority religion</span><span class="info-val">Secular / Catholic heritage</span></div>
+          <div class="info-row"><span class="info-key">State model</span><span class="info-val highlight">Laïcité (strict secularism)</span></div>
+          <div class="info-row"><span class="info-key">Key Muslim origins</span><span class="info-val">Algeria, Morocco, Tunisia, Sub-Saharan Africa</span></div>
+          <div class="info-row"><span class="info-key">Main Muslim cities</span><span class="info-val">Paris, Marseille, Lyon, Lille</span></div>
+          <div class="info-row"><span class="info-key">Mosques / musallas</span><span class="info-val">~2,500+ registered</span></div>
+          <div class="info-row"><span class="info-key">EU member</span><span class="info-val">Yes (founding member)</span></div>
+          <div class="info-row"><span class="info-key">UN member</span><span class="info-val">Yes (P5 Security Council)</span></div>
+        </div>
+        <div class="note">
+          Note: France does not collect official religious census data. All Muslim population estimates are derived from academic surveys, the Institut Montaigne, Pew Research Center, and similar sources.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <p class="section-label">Section 02</p>
+    <h2 class="section-title">Research on Islamophobia in France</h2>
+    <p class="section-intro"> Islamophobia in France operates across multiple levels, from everyday social interactions to institutionalized policies. Research from peer-reviewed journals, civil society reports, and governmental data demonstrates that these patterns are not accidental, but reflect a broader structural system. As discussed in course frameworks, this system functions through processes of “othering,” where Muslim communities are positioned as fundamentally different and subject to regulation through law, media, and public discourse.</p>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="card-icon">📊</div>
+        <h3>Hate Crime &amp; Incident Data</h3>
+        <p>  Data from the CNCDH shows ongoing anti-Muslim incidents in France, including harassment, assaults, and vandalism of mosques. These incidents often rise after national security events, suggesting a connection between political narratives and public behavior. This shows that Islamophobia is not random, but reinforced by broader social and political forces.</p>
+        <span class="cite">Source: CNCDH, Islamophobia Studies Journal </span>
+      </div>
+      <div class="research-card red">
+        <div class="card-icon">⚖️</div>
+        <h3>Structural Discrimination</h3>
+        <p>Studies from Sciences Po show that applicants with Arabic-sounding names receive fewer job callbacks than others. This highlights bias in hiring, even when systems appear neutral. This reflects structural Islamophobia, where discrimination is built into institutions rather than just individual attitudes.</p>
+        <span class="cite">Source: Sciences Po, European Report</span>
+      </div>
+      <div class="research-card gold">
+        <div class="card-icon">🏫</div>
+        <h3>Education &amp; Religious Expression</h3>
+        <p>  The 2004 ban on religious symbols in schools has disproportionately affected Muslim girls who wear the hijab. Research links this to increased exclusion and negative academic outcomes. This shows how laws based on secularism can still regulate Muslim identity and reinforce “othering.”</p>
+        <span class="cite">Source: ISJ, Amnesty International Report</span>
+      </div>
+      <div class="research-card">
+        <div class="card-icon">🏘️</div>
+        <h3>Housing &amp; Urban Segregation</h3>
+        <p>  Many Muslim communities are concentrated in underfunded suburban areas known as <em>banlieues</em>, with high unemployment and limited resources. These conditions are linked to broader patterns of exclusion. This shows how Islamophobia connects to economic and urban inequality.</p>
+        <span class="cite">Source: Human Rights Watch, EU MIDIS Survey</span>
+      </div>
+      <div class="research-card red">
+        <div class="card-icon">🗳️</div>
+        <h3>Political Rhetoric &amp; Policy</h3>
+        <p>  Reports show that anti-Muslim rhetoric has become more common in French politics. Both far-right and mainstream leaders often frame Islam as incompatible with French identity. This helps shape public opinion and justify restrictive policies, reinforcing the idea of Muslims as a social “other.”</p>
+        <span class="cite">Source: European Islamophobia Report, ECRI Reports</span>
+      </div>
+      <div class="research-card gold">
+        <div class="card-icon">🌐</div>
+        <h3>Online Islamophobia</h3>
+        <p>  Muslim communities in France face widespread harassment online, including hate speech and targeted attacks. Reports show that social media amplifies these narratives. This shows how Islamophobia spreads beyond institutions into everyday digital spaces.</p>
+        <span class="cite">Source: Council of Europe,European Islamophobia Report</span>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <blockquote>"The Orient was almost a European invention, and had been since antiquity a place of romance, exotic beings, haunting memories, and remarkable experiences."</blockquote>
+      <cite>— Edward Said, <em>Orientalism</em></cite>
+    </div>
+  </div>
+</section>
+
+<!-- POLITICAL -->
+<section id="political">
+  <div class="container">
+    <p class="section-label">Section 03</p>
+    <h2 class="section-title">Political Figures &amp; Electoral Islamophobia</h2>
+    <p class="section-intro">  Islamophobia has become a central part of French politics, not just through what politicians say, but through how Muslims are framed in society. Across both far-right and mainstream parties, this kind of rhetoric is used to justify policies and shape public opinion.</p>
+
+    <div class="politician-grid">
+      <div class="politician-card">
+        <div class="politician-header">
+          <span class="politician-name">Marine Le Pen</span>
+          <span class="politician-party">Rassemblement National</span>
+        </div>
+        <div class="politician-body">
+          <p>  This frames Muslims as a threat, which makes policies like hijab bans seem more justified.</p>
+          <div class="quote">"Islamism is making progress in France. It is not a religion, it is a totalitarian political ideology." — Marine Le Pen (2022 presidential campaign)</div>
+          <p>Her 2022 presidential campaign platform proposed banning hijabs in public, ending dual nationality, and restricting immigration from Muslim-majority countries.</p>
+          <div class="tag-list">
+            <span class="tag">Hijab ban</span>
+            <span class="tag">Anti-immigration</span>
+            <span class="tag">Securitization of Islam</span>
+            <span class="tag">Presidential candidate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="politician-card">
+        <div class="politician-header">
+          <span class="politician-name">Éric Zemmour</span>
+          <span class="politician-party bn">Reconquête</span>
+        </div>
+        <div class="politician-body">
+          <p>  This is a clear example of “othering,” where Muslims are portrayed as not really part of French identity.</p>
+          <div class="quote">"France is not a Muslim country. Islam is foreign to our civilisation." — Éric Zemmour (2021 campaign speech)</div>
+          <p>Zemmour has been convicted multiple times by French courts for incitement to hatred against Muslims. He received 7% of the first-round presidential vote in 2022.</p>
+          <div class="tag-list">
+            <span class="tag">Convicted hate speech</span>
+            <span class="tag">Great Replacement rhetoric</span>
+            <span class="tag">Anti-Muslim identity politics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="politician-card">
+        <div class="politician-header">
+          <span class="politician-name">Valérie Pécresse</span>
+          <span class="politician-party" style="background:#1565c0;">Les Républicains</span>
+        </div>
+        <div class="politician-body">
+          <p>  This shows how rhetoric like this isn’t just far-right anymore, but is showing up in mainstream politics too.</p>
+          <div class="quote">“I’m going to clean up the suburbs with a pressure washer.” — Nicolas Sarkozy, 2005</div>
+          <div class="tag-list">
+            <span class="tag">Mainstreaming of far-right rhetoric</span>
+            <span class="tag">Anti-banlieue discourse</span>
+            <span class="tag">Conservative Islamophobia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="politician-card">
+        <div class="politician-header">
+          <span class="politician-name">Emmanuel Macron</span>
+          <span class="politician-party" style="background:#05728f;">Renaissance</span>
+        </div>
+        <div class="politician-body">
+          <p>  This shows how even mainstream leaders can frame Islam in a way that ends up targeting Muslim communities.</p>
+          <div class="quote">"Islam is a religion that is in crisis all over the world today." — Emmanuel Macron, October 2, 2020 speech</div>
+          <p>His speech triggered diplomatic protests from Turkey, Pakistan, and several Muslim-majority countries, and was condemned by rights organisations as generalising.</p>
+          <div class="tag-list">
+            <span class="tag">Anti-separatism law 2021</span>
+            <span class="tag">Laïcité enforcement</span>
+            <span class="tag">Institutional Islamophobia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section id="media">
+  <div class="container">
+    <p class="section-label">Section 04</p>
+    <h2 class="section-title">Media, Film &amp; Islamophobic Representation</h2>
+    <p class="section-intro">  Media plays a major role in shaping how Muslims are viewed in France. Films, news outlets, and online spaces often connect Muslim identity with danger, extremism, or failure to assimilate. This matters because these representations help normalize the idea that Muslims are outsiders in French society.</p>
+
+    <div class="media-two-col">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--navy); margin-bottom:1.5rem;">Films &amp; Television</h3>
+
+        <div class="media-item">
+          <div class="media-thumb">
+            <img src="desintegration.jpg" alt="La Désintégration film poster">
+          </div>
+          <div class="media-info">
+            <span class="media-badge badge-film">Film</span>
+            <h4>La Désintégration (2011)</h4>
+            <p>  This film focuses on the radicalization of young Muslim men in France. While it tries to show a complex issue, it can also reinforce the idea that Muslim youth from the banlieues are naturally connected to extremism. This connects to the course idea of “othering,” where Muslims are shown as separate from the rest of society.</p>
+          </div>
+        </div>
+
+        <div class="media-item">
+          <div class="media-thumb">
+            <img src="Engrenages.jpeg" alt="Engrenages Spiral TV show">
+          </div>
+          <div class="media-info">
+            <span class="media-badge badge-film">Television</span>
+            <h4>Engrenages / Spiral (2005–2021)</h4>
+            <p>  This crime drama often places Arab and Muslim characters in stories about crime, policing, and suspicion. Even when the show is not openly Islamophobic, these repeated patterns can make Muslim communities seem dangerous or criminal. This shows how media can reinforce stereotypes without directly saying them.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--navy); margin-bottom:1.5rem;">Press, Print &amp; Online</h3>
+
+        <div class="media-item">
+          <div class="media-thumb">
+            <img src="Valeurs_Actuelles.webp" alt="Valeurs Actuelles magazine cover depicting Islam">
+          </div>
+          <div class="media-info">
+            <span class="media-badge badge-news">Print Media</span>
+            <h4>Le Figaro &amp; Valeurs Actuelles</h4>
+            <p> Studies have shown that these outlets often frame Islam as a threat to French identity. Valeurs Actuelles has also faced legal action for racist depictions of Muslim figures.</p>
+          </div>
+        </div>
+
+        <div class="media-item">
+          <div class="media-thumb">
+            <img src="Twitter_Comment .png" alt="Tweet flagged as sensitive content on social media platform">
+          </div>
+          <div class="media-info">
+            <span class="media-badge badge-social">Social Media</span>
+            <h4>Online Islamophobic Ecosystems</h4>
+            <p>  Social media platforms allow Islamophobic content to spread quickly, but they also attempt to regulate it through content warnings and moderation tools. Posts related to Islam and politics are often flagged as sensitive, showing how these discussions are both widespread and controversial. This highlights how Islamophobia exists in everyday digital spaces, even when platforms try to limit its visibility.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<section id="legal">
+  <div class="container">
+    <p class="section-label">Section 05</p>
+    <h2 class="section-title">Legal Restrictions on Muslim Citizens &amp; Immigrants</h2>
+    <p class="section-intro">  France has passed several laws that are presented as neutral or based on secularism and security, but in practice they often affect Muslim communities the most. These policies show how Islamophobia can operate through legal systems, not just individual actions.</p>
+
+    <div class="law-table-wrap">
+      <table class="law-table">
+        <thead>
+          <tr>
+            <th>Law / Policy</th>
+            <th>Year</th>
+            <th>Scope</th>
+            <th>Impact on Muslims</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Law on Religious Symbols in Schools</td>
+            <td>2004</td>
+            <td>Bans "conspicuous" religious symbols in public primary and secondary schools</td>
+            <td>Disproportionately targets Muslim girls wearing hijab; widely criticised by Amnesty International and UN bodies (Amnesty International, UN HRC)</td>
+            <td><span class="status-concern">Concern</span></td>
+          </tr>
+          <tr>
+            <td>Full-Face Veil Ban</td>
+            <td>2010</td>
+            <td>Prohibits full face coverings in all public spaces</td>
+            <td>UN Human Rights Committee condemned the law as violating freedom of religion and expression; affects Muslim women (UN Human Rights Committee)</td>
+            <td><span class="status-concern">Concern</span></td>
+          </tr>
+          <tr>
+            <td>Law Reinforcing Republican Principles ("Anti-Separatism" Law)</td>
+            <td>2021</td>
+            <td>Regulates associations, schools, mosques, and foreign funding of religious orgs</td>
+            <td>Used to dissolve Muslim civil society organisations including CCIF; European Parliament raised concerns (European Parliament, HRW)</td>
+            <td><span class="status-concern">Concern</span></td>
+          </tr>
+          <tr>
+            <td>State of Emergency (post-2015 attacks)</td>
+            <td>2015–2017</td>
+            <td>Sweeping police powers; house searches, house arrests without trial</td>
+            <td>Human Rights Watch documented disproportionate raids on Muslim homes and mosques — over 4,000 raids, few resulting in charges (Human Rights Watch)</td>
+            <td><span class="status-context">Context</span></td>
+          </tr>
+          <tr>
+            <td>SILT Law (Sécurité Intérieure et Lutte contre le Terrorisme)</td>
+            <td>2017</td>
+            <td>Made key emergency powers permanent: mosque closures, individual control measures</td>
+            <td>Allows mosque closures and restrictions without conviction; critics document disproportionate targeting (Council of Europe, ECRI)</td>
+            <td><span class="status-concern">Concern</span></td>
+          </tr>
+          <tr>
+            <td>Immigration Restrictions (French + EU)</td>
+            <td>Ongoing</td>
+            <td>Asylum processing, family reunification, nationality requirements</td>
+            <td>Muslim majority nationality applicants face higher denial rates and delays (UNHCR, Human Rights Watch)</td>
+            <td><span class="status-concern">Concern</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMIC -->
+<section id="economic">
+  <div class="container">
+    <p class="section-label">Section 06</p>
+    <h2 class="section-title">Economic Restrictions &amp; Disparities</h2>
+    <p class="section-intro">  Muslim communities in France face economic challenges that go beyond individual situations. These patterns show up in hiring, banking, and mobility, and they are not random. They reflect broader systems where discrimination is built into institutions, which connects to the idea of structural Islamophobia.</p>
+
+    <div class="econ-blocks">
+      <div class="econ-block">
+        <h3>Employment</h3>
+        <ul>
+          <li>CV discrimination: Arabic-sounding names receive significantly fewer callbacks (Sciences Po matched-pair study)</li>
+          <li>Higher unemployment rates in banlieues with large Muslim populations</li>
+          <li>Underrepresentation in senior public sector and corporate roles</li>
+          <li>Refusals of religious accommodation (prayer breaks, dress code) documented in workplaces</li>
+          <li>Discrimination complaints to the Défenseur des droits disproportionately involve Muslim complainants</li>
+          <p>Together, these patters show that even when systems appear neutral, Muslim applicants oftenface disadvantages in access to jobs and opportunities.</p>
+        </ul>
+      </div>
+      <div class="econ-block">
+        <h3>Banking &amp; Business</h3>
+        <ul>
+          <li>Reported ethnic/religious profiling in bank account openings and credit assessments</li>
+          <li>Muslim entrepreneurs report disproportionate barriers to business loans</li>
+          <li>No state-recognised Islamic finance framework — halal mortgage products unavailable through major banks</li>
+          <li>Asset freezing under counter-terrorism legislation affects Muslim-owned businesses</li>
+          <li>Freezing of accounts linked to Muslim charities under "terrorism financing" designations</li>
+          <p>These patterns show how financial systems can also create barriers, making it harder for Muslim individuals and businesses to access resources.</p></p>
+        </ul>
+      </div>
+      <div class="econ-block">
+        <h3>Travel &amp; Mobility</h3>
+        <ul>
+          <li>Selective border stops and secondary screening for Muslim travellers documented by civil liberties groups</li>
+          <li>Fiche S security designation restricts freedom of movement; overrepresentation of Muslims reported by journalists</li>
+          <li>No-fly lists and travel bans applied without criminal charge or judicial oversight</li>
+          <li>Visa restrictions and delays for nationals of Muslim-majority countries (Algeria, Morocco, Tunisia)</li>
+          <li>Deportation orders used against Muslim preachers and community leaders</li>
+          <p>  These restrictions show how security policies can impact everyday movement and limit opportunities for certain groups.</p>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SURVEILLANCE -->
+<section id="surveillance">
+  <div class="container">
+    <p class="section-label">Section 07</p>
+    <h2 class="section-title">Surveillance, Emergency Laws &amp; Terrorism Restrictions</h2>
+    <p class="section-intro">  France has expanded its surveillance and counter-terrorism policies, especially after 2015. These measures are presented as necessary for security, but research shows they often impact Muslim communities the most. This shows how security policies can create unequal effects in everyday life.</p>
+
+    <div class="surv-grid">
+      <div class="surv-card">
+        <div class="surv-stat">4,000+</div>
+        <h3>State of Emergency Raids</h3>
+        <p>  Following the November 2015 Bataclan attack, France declared a state of emergency lasting nearly two years. Human Rights Watch documented over 4,000 warrantless raids, the vast majority targeting Muslim homes, mosques, and businesses, with fewer than 1% resulting in terrorism-related charges (Human Rights Watch).</p>
+      </div>
+      <div class="surv-card">
+        <div class="surv-stat">SILT Law</div>
+        <h3>Permanent Emergency Powers (2017)</h3>
+        <p>  The SILT Law made key emergency measures permanent, allowing mosque closures by prefectural decree, individual control orders without criminal conviction, and perimeter restrictions. Critics, including the Council of Europe's Venice Commission, noted insufficient judicial oversight (Council of Europe).</p>
+      </div>
+      <div class="surv-card">
+        <div class="surv-stat">Fiche S</div>
+        <h3>Security File Designations</h3>
+        <p>  The "Fiche S" system flags individuals deemed potential threats. Journalists and lawyers have documented overrepresentation of Muslim men, including those with no criminal record, and its use in restricting employment and travel (investigative reporting).</p>
+      </div>
+      <div class="surv-card">
+        <div class="surv-stat">CNAPR</div>
+        <h3>Counter-Radicalisation Infrastructure</h3>
+        <p>  France's counter-radicalisation system has been criticised for defining "radicalisation" so broadly that ordinary Muslim practices can be flagged as risk indicators. This chilling effect is documented in the Islamophobia Studies Journal (Islamophobia Studies Journal).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--CONCLUSION-->
+<section id="conclusion">
+  <div class="container">
+    <p class="section-label">Final Section</p>
+    <h2 class="section-title">Conclusion</h2>
+    <p class="section-intro">
+      This project demonstrates that Islamophobia in France is not limited to individual prejudice, but operates as a structural system across multiple domains. From legal restrictions to economic barriers and media representation, Muslim communities are consistently positioned as the “others” within French society. While these policies are often justified through secularism and security, their effects reveal patterns of exclusion that raise important ethical and social questions about equality, identity, and belonging in modern France.
+    </p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-section">
+      <h4>About This Project</h4>
+      <p>This website was created as a research project examining the current state of Islamophobia in France.</p>
+      <p style="margin-top:0.75rem; font-size:0.8rem;">
+        All claims are supported by sources listed below and in the Works Cited section.
+      </p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Key Sources</h4>
+      <ul>
+        <li><a href="https://www.hrw.org/europe/central-asia/france" target="_blank">Human Rights Watch</a></li>
+        <li><a href="https://www.amnesty.org/en/location/europe-and-central-asia/france/report-france/" target="_blank">Amnesty International</a></li>
+        <li><a href="https://www.coe.int/en/web/european-commission-against-racism-and-intolerance/france" target="_blank">ECRI (Council of Europe)</a></li>
+        <li><a href="https://www.institutmontaigne.org/en/publications/french-islam-possible" target="_blank">Institut Montaigne</a></li>
+        <li><a href="https://www.ohchr.org/en/treaty-bodies/ccpr" target="_blank">UN Human Rights Committee</a></li>
+        <li><a href="https://www.europarl.europa.eu/news/en" target="_blank">European Parliament</a></li>
+        <li><a href="https://www.islamophobiastudiesjournal.org" target="_blank">Islamophobia Studies Journal</a></li>
+        <li><a href="https://www.pewresearch.org" target="_blank">Pew Research Center</a></li>
+        <li><a href="https://www.lemonde.fr/en/" target="_blank">Le Monde (Journalism)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Project Team</h4>
+      <ul>
+        <li>Nathan Lopez</li>
+      </ul>
+      <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.35);">
+        Course: ASAMST 132AC<br>
+        Institution: University of California Berkeley<br>
+        Year: 2026
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>Islamophobia in France — Research Project · Academic use only</span>
+    <span>University of California Berkeley · 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
